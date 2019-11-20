@@ -1,0 +1,27 @@
+import requests
+from bs4 import BeautifulSoup
+
+res = requests.get("https://news.ycombinator.com/news")
+print(res)
+
+# BeautifulSoup parses the requests text into HTML objects which can be modified
+
+Soup = BeautifulSoup(res.text,"html.parser")
+# print(Soup)
+
+# find all a's
+
+print(Soup.find_all('a'))
+
+# find first a
+
+print(Soup.find('a'))
+print(Soup.a)
+
+# Find items using css selecters - https://www.w3schools.com/cssref/css_selectors.asp
+
+links = Soup.select(".storylink")
+print(links)
+
+vote = Soup.select(".score")
+print(vote[0])
